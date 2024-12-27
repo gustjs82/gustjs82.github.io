@@ -1,0 +1,599 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4ebd6; /* Background color of the page */
+    color: #4f3500; /* Text color */
+    line-height: 1.6;
+    font-size: 16px;
+	margin-top: 80px; /* Adjust the height of the header if needed */
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4f3500; /* Brown menu background */
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    background-image: url('images/secondary-logo.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 50px;
+    height: 80px; /* Set a fixed height for the header */
+}
+
+/* Logo */
+header .logo img {
+    width: 120px; /* Adjust as needed */
+    height: auto;
+}
+
+header .secondary-logo {
+    background-image: url('images/secondary-logo.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 50px;
+    height: 50px;
+}
+
+/* Menu Style */
+nav ul.menu {
+    display: flex;
+    justify-content: center; /* Center align menu items */
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+	gap: 30px;
+}
+nav ul.menu li {
+    position: relative;
+}
+nav ul.menu a {
+    text-decoration: none;
+    color: #f4ebd6; /* Font color for the menu text */
+    font-weight: bold; /* Make the font bolder */
+    text-transform: capitalize; /* Capitalize the first letter of each word */
+    font-family: 'Arial', sans-serif; /* You can replace this with any bold font of your choice */
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* /* nav ul.menu li a { */ */
+    /* /* color: #f4ebd6; /* Menu item font color */ */ */
+    /* /* text-decoration: none; */ */
+    /* /* font-size: 18px; */ */
+    /* /* text-transform: uppercase; */ */
+    /* /* letter-spacing: 1px; */ */
+    /* /* transition: color 0.3s ease; */ */
+/* /* } */ */
+
+nav ul.menu li a:hover {
+    color: #a2cb3e; /* Font color when hovered */
+}
+
+nav ul.menu li.dropdown .arrow {
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+nav ul.menu li a.active {
+    color: #a2cb3e;
+}
+
+/* Dropdown Menu */
+nav ul.menu li.dropdown ul {
+    display: none;
+    position: absolute;
+    background-color: #4f3500; /* Same color as the main menu */
+    top: 100%;
+    left: 0;
+    padding: 10px;
+    min-width: 180px;
+    z-index: 100;
+}
+
+nav ul.menu li.dropdown:hover ul {
+    display: block;
+}
+
+nav ul.menu li.dropdown ul li {
+    padding: 8px 0;
+}
+
+nav ul.menu li.dropdown ul li a {
+    color: #f4ebd6;
+    font-size: 16px;
+}
+
+nav ul.menu li.dropdown ul li a:hover {
+    color: #a2cb3e;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    color: #f4ebd6;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%); /* Vertically center the hamburger icon */
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #4f3500;
+    width: 250px;
+    height: 100%;
+    padding-top: 50px;
+    z-index: 1000;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mobile-menu ul li {
+    padding: 10px;
+    text-align: left;
+}
+
+.mobile-menu ul li a {
+    color: #f4ebd6;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.mobile-menu.show {
+    display: block;
+}
+
+/* Main Hero Section */
+.hero {
+    margin-top: 80px; /* To prevent content overlap with fixed header */
+    text-align: center;
+}
+
+.hero .main-logo {
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+/* Popular Products */
+.popular-items {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.popular-items h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #4f3500;
+}
+
+.popular-items .products {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.popular-items .product {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 48%;
+}
+
+.popular-items .product img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.popular-items .product h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #4f3500;
+}
+
+.popular-items .product p {
+    color: #777;
+}
+
+/* Recent Articles */
+.recent-articles {
+    margin: 50px 0;
+}
+
+.recent-articles h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #4f3500;
+}
+
+.recent-articles .articles {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.recent-articles .article {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 32%;
+}
+
+.recent-articles .article h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.recent-articles .article p {
+    color: #777;
+}
+
+.recent-articles .article a {
+    color: #4f3500;
+    text-decoration: none;
+    font-weight: bold;
+}
+/* Stories Page */
+.stories {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.stories h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.story {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.story img {
+    width: 80%;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.story h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.story p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Footer */
+footer {
+    background-color: #4f3500;
+    padding: 20px 0;
+    text-align: center;
+    color: #f4ebd6;
+}
+
+footer p {
+    font-size: 14px;
+}
+/* Product Display Section */
+.product-display {
+    margin-top: 80px; /* To avoid overlap with the header */
+    padding: 20px;
+}
+
+.product-menu {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.product-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.product-menu li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.product-menu a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #4f3500;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.product-menu a:hover {
+    color: #a2cb3e; /* Hover color */
+}
+
+.product-item {
+    display: none;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.product-item img {
+    width: 80%; /* Set image width */
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.product-item h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.product-item p {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Product Details Section */
+.product-details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.product-image img {
+    width: 45%;
+    border-radius: 8px;
+}
+
+.product-description {
+    width: 45%;
+    text-align: left;
+}
+
+.product-description p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Show and hide products using JavaScript */
+.product-item {
+    display: none;
+}
+
+.product-item.active {
+    display: block;
+}
+/* About Us Section */
+.about-us {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.about-us h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.about-us p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.about-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.about-image {
+    width: 45%;
+    max-width: 500px;
+    border-radius: 8px;
+}
+/* Contact Us Section */
+.contact-us {
+    padding: 50px 0;
+    background-color: #f4ebd6;
+    color: #4f3500;
+    font-family: 'Arial', sans-serif;
+}
+
+.contact-us .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contact-us h1, .contact-us h2 {
+    text-align: center;
+    color: #4f3500;
+}
+
+.contact-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.contact-info {
+    width: 45%;
+}
+
+.contact-info h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    font-size: 18px;
+}
+
+.contact-info a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.send-to-phone-btn {
+    background-color: #a2cb3e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.send-to-phone-btn:hover {
+    background-color: #6da02f;
+}
+
+.google-map iframe {
+    width: 100%;
+    border: none;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    font-weight: bold;
+    display: block;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.contact-form button {
+    background-color: #a2cb3e;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.contact-form button:hover {
+    background-color: #6da02f;
+}
+
+.additional-contact {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.social-links a {
+    color: #4f3500;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.social-links a:hover {
+    color: #a2cb3e;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #4f3500;
+    color: white;
+}
+
+/* Mobile Specific Styles */
+@media screen and (max-width: 768px) {
+    /* Show the hamburger icon for mobile screens */
+    .hamburger {
+        display: block;
+    }
+    /* Set a fixed height for the mobile menu to match the height of the desktop menu */
+    .header {
+        height: 80px; /* Keep the same height for both desktop and mobile */
+    }
+    /* Hide the normal menu in mobile view */
+    nav ul.menu {
+        display: none;
+    }
+
+    /* Mobile menu styles */
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #4f3500;
+        width: 250px;
+        height: 100%;
+        padding-top: 50px;
+        z-index: 1000;
+    }
+
+    .mobile-menu.show {
+        display: block;
+    }
+
+    /* Adjust content on smaller screens */
+    .hero {
+        margin-top: 100px;
+    }
+
+    .popular-items .products {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .recent-articles .articles {
+        flex-direction: column;
+        align-items: center;
+    }
+}

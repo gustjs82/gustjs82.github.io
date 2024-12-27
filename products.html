@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products - Mosi Health</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Same header structure as index.html -->
+<header class="header">
+    <div class="container">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="products.html">Products <span class="arrow">&#x2193;</span></a>
+                    <ul class="dropdown-content">
+                            <li><a href="products.html#product1" onclick="showProduct('product1')">Hibiscus Inulin Sweetener</a></li>
+                            <li><a href="products.html#product2" onclick="showProduct('product2')">Liquid Inulin</a></li>
+                    </ul>
+                </li>
+                <li><a href="stories.html">Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Hamburger Icon for Mobile -->
+        <div class="hamburger" id="hamburger-icon">
+            &#9776;
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a>
+                    <ul class="dropdown-content">
+                            <li><a href="products.html#product1" onclick="showProduct('product1')">Hibiscus Inulin Sweetener</a></li>
+                            <li><a href="products.html#product2" onclick="showProduct('product2')">Liquid Inulin</a></li>
+                    </ul>
+				</li>
+                <li><a href="stories.html">Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+    <!-- Main Content Section -->
+    <section class="product-display">
+        <div class="container">
+            <!-- Product Menu (dropdown with sub-items) -->
+            <nav class="product-menu">
+                <ul>
+                    <li><a href="#" onclick="showProduct('product1')">Hibiscus Inulin Sweetener</a></li>
+                    <li><a href="#" onclick="showProduct('product2')">Liquid Inulin</a></li>
+                </ul>
+            </nav>
+
+            <!-- Product 1: Hibiscus Inulin Sweetener -->
+            <div class="product-item" id="product1">
+                <img src="images/product1.webp" alt="Hibiscus Inulin Sweetener">
+                <h2>Hibiscus Inulin Sweetener</h2>
+                <p>Our Hibiscus Inulin Sweetener is a natural, low-glycemic sweetener that offers a healthy alternative to traditional sugar. Made from the roots of the chicory plant, it helps regulate blood sugar levels and supports digestive health. With a subtle floral flavor and rich in prebiotic fiber, it's perfect for those looking to cut down on sugar without compromising on taste.</p>
+                <div class="product-details">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/500x300" alt="Hibiscus Inulin Sweetener Image 1">
+                    </div>
+                    <div class="product-description">
+                        <p>Inulin is a naturally occurring fiber that helps to support gut health by acting as a prebiotic, feeding the beneficial bacteria in the digestive system. Our Hibiscus Inulin Sweetener can be used in beverages, baking, or as a sugar substitute in recipes. It has no added sugars or artificial sweeteners, making it a great choice for those on a low-carb or ketogenic diet.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2: Liquid Inulin -->
+            <div class="product-item" id="product2" style="display: none;">
+                <img src="images/product2.webp" alt="Liquid Inulin">
+                <h2>Liquid Inulin</h2>
+                <p>Liquid Inulin is a highly versatile, easy-to-use prebiotic that can be added to your drinks, smoothies, or food to support your digestive health. Rich in fiber, it promotes the growth of beneficial gut bacteria, which can enhance digestion, regulate blood sugar, and support heart health. It also has a mild sweetness, making it a great addition to recipes that require a natural sweetener.</p>
+                <div class="product-details">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/500x300" alt="Liquid Inulin Image 1">
+                    </div>
+                    <div class="product-description">
+                        <p>Our Liquid Inulin is carefully crafted to maintain all the beneficial properties of inulin, making it a great choice for anyone seeking a natural and sustainable source of fiber. It's tasteless, making it easy to incorporate into a wide variety of foods and beverages without altering the flavor. Whether you're making smoothies, salad dressings, or desserts, Liquid Inulin is an excellent addition to your healthy lifestyle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mosi Health. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

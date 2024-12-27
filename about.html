@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>About Us - Mosi Health</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+<header class="header">
+    <div class="container">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="products.html">Products <span class="arrow">&#x2193;</span></a>
+                    <ul class="dropdown-content">
+                            <li><a href="products.html#product1" onclick="showProduct('product1')">Hibiscus Inulin Sweetener</a></li>
+                            <li><a href="products.html#product2" onclick="showProduct('product2')">Liquid Inulin</a></li>
+                    </ul>
+                </li>
+                <li><a href="stories.html">Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Hamburger Icon for Mobile -->
+        <div class="hamburger" id="hamburger-icon">
+            &#9776;
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a>
+                    <ul class="dropdown-content">
+                            <li><a href="products.html#product1" onclick="showProduct('product1')">Hibiscus Inulin Sweetener</a></li>
+                            <li><a href="products.html#product2" onclick="showProduct('product2')">Liquid Inulin</a></li>
+                    </ul>
+				</li>
+                <li><a href="stories.html">Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+    <!-- About Us Content -->
+    <section class="about-us">
+        <div class="container">
+            <h1>About Mosi Health</h1>
+            <p>At Mosi Health, we are passionate about creating healthier food options that not only nourish the body but also delight the taste buds. Our goal is to improve your wellness while offering delicious, natural supplements. Our flagship product, the Inulin-based sweetener, is made with care and innovation to enhance your overall experience with healthy eating.</p>
+            <div class="about-images">
+                <img src="https://via.placeholder.com/500x300" alt="Health" class="about-image">
+                <img src="https://via.placeholder.com/500x300" alt="Products" class="about-image">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mosi Health. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

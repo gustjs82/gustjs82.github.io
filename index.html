@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home - Mosi Health</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+<header class="header">
+    <div class="container">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="products.html">Products <span class="arrow">&#x2193;</span></a>
+                    <ul class="dropdown-content">
+                            <li><a href="products.html#product1" onclick="showProduct('product1')">Hibiscus Inulin Sweetener</a></li>
+                            <li><a href="products.html#product2" onclick="showProduct('product2')">Liquid Inulin</a></li>
+                    </ul>
+                </li>
+                <li><a href="stories.html">Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Hamburger Icon for Mobile -->
+        <div class="hamburger" id="hamburger-icon">
+            &#9776;
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a>
+                    <ul class="dropdown-content">
+                            <li><a href="products.html#product1" onclick="showProduct('product1')">Hibiscus Inulin Sweetener</a></li>
+                            <li><a href="products.html#product2" onclick="showProduct('product2')">Liquid Inulin</a></li>
+                    </ul>
+				</li>
+                <li><a href="stories.html">Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+    <!-- Main Hero Section with Main Logo -->
+    <section class="hero">
+        <div class="container">
+            <img src="images/main-logo.png" alt="Mosi Health Main Logo" class="main-logo">
+        </div>
+    </section>
+
+    <!-- Most Popular Items Section -->
+    <section class="popular-items">
+        <div class="container">
+            <h2>Our Most Popular Products</h2>
+            <div class="products">
+                <div class="product">
+                    <img src="images/product1.webp" alt="Hibiscus Inulin Sweetener" class="product-img">
+                    <h3>Hibiscus Inulin Sweetener</h3>
+                    <p>Discover the health benefits of Hibiscus Inulin Sweetener.</p>
+                </div>
+                <div class="product">
+                    <img src="images/product2.webp" alt="Liquid Inulin" class="product-img">
+                    <h3>Liquid Inulin</h3>
+                    <p>Experience the natural goodness of Liquid Inulin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Articles Section -->
+    <section class="recent-articles">
+        <div class="container">
+            <h2>Latest Stories</h2>
+            <div class="articles">
+                <div class="article">
+                    <h3><a href="story1.html">How Inulin Improves Gut Health</a></h3>
+                    <p>Learn about the benefits of Inulin for digestive health...</p>
+                </div>
+                <div class="article">
+                    <h3><a href="story2.html">The Power of Natural Sweeteners</a></h3>
+                    <p>Discover why natural sweeteners are the best choice for a healthy lifestyle...</p>
+                </div>
+                <div class="article">
+                    <h3><a href="story3.html">Inulin and Blood Sugar Control</a></h3>
+                    <p>Understand how Inulin can help stabilize blood sugar levels...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mosi Health. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

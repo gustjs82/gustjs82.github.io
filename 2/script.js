@@ -147,10 +147,25 @@ function initHamburgerMenu() {
   // Hide the mobile menu when a link is clicked
   const mobileMenuLinks = mobileMenu.querySelectorAll("a");
   mobileMenuLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenu.style.display = "none";
-    });
+  link.addEventListener("click", (e) => {
+    // If the link text is exactly "Products" (or use a class/id check),
+    // do NOT close the entire menu.
+    if (link.textContent.trim() === "Products") {
+      e.preventDefault();
+      // Possibly do something here, like toggling the sub-menu,
+      // but do NOT hide mobileMenu.
+      return;
+    }
+	// Example if you have an id="mobile-products-link" in HTML
+	if (link.id === "mobile-products-link") {
+	  // do not hide the menu
+	  return;
+	}
+
+    // Otherwise, hide the menu for all other links
+    mobileMenu.style.display = "none";
   });
+});
 }
 
 

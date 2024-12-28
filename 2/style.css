@@ -1,0 +1,621 @@
+/* 
+  style.css
+  ---------------------------------------------------------------------------------
+  A consolidated stylesheet for a responsive Mosi Health website, featuring:
+    - Global resets & fonts
+    - Navigation (desktop & mobile)
+    - Home page slider
+    - CTA section, SNS section
+    - Product, Stories, About Us, Contact layouts
+    - Footer
+  ---------------------------------------------------------------------------------
+*/
+
+/* =========================
+   1. GLOBAL RESETS & FONTS
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+body {
+  background-color: #F9F4EF; /* Light beige background */
+  color: #4F2E1F;           /* Dark warm brown text */
+  line-height: 1.6;
+}
+
+/* ======================
+   2. HEADER & NAVIGATION
+   ====================== */
+header {
+  display: flex;
+  align-items: center;
+  background-color: #f4ebd6; /* Match logo's background */
+  padding: 0.5rem 1rem;
+  position: relative;
+  border-bottom: 1px solid #E4D9CE; /* Subtle bottom border */
+}
+
+.logo-container {
+  flex: 1; /* pushes nav to the right */
+}
+.logo {
+  max-height: 60px;
+  object-fit: contain;
+}
+
+/* Desktop Nav */
+.navbar {
+  position: relative;
+}
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.nav-menu li a {
+  text-decoration: none;
+  color: #4F2E1F;
+  font-weight: bold;
+  position: relative;
+}
+.nav-menu li a:hover,
+.nav-menu li a.active {
+  color: #C47A5A; /* Warm highlight */
+}
+
+/* Dropdown Container */
+.dropdown {
+  position: relative;
+}
+/* Add a small arrow next to "Products" */
+.dropbtn::after {
+  content: " \25BE"; /* ▼ arrow, subtle */
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+/* Dropdown Content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  background-color: #F9F4EF;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  z-index: 999;
+}
+/* Show dropdown on hover (desktop) */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content li {
+  padding: 0.5rem 1rem;
+}
+.dropdown-content li a {
+  color: #4F2E1F;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content li a:hover {
+  background-color: #E4D9CE;
+}
+
+/* Hamburger (hidden on desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #4F2E1F;
+  border-radius: 3px;
+}
+
+/* Mobile Menu (hidden by default) */
+.mobile-menu {
+  display: none;
+  background-color: #F9F4EF;
+}
+.mobile-menu ul {
+  list-style: none;
+  padding: 1rem;
+}
+.mobile-menu ul li {
+  margin: 0.5rem 0;
+}
+.mobile-menu ul li a {
+  text-decoration: none;
+  color: #4F2E1F;
+  font-weight: bold;
+}
+.mobile-dropdown-content {
+  display: none;
+  padding-left: 1rem;
+  border-left: 2px solid #C47A5A;
+}
+.mobile-dropdown:hover .mobile-dropdown-content,
+.mobile-dropdown:focus-within .mobile-dropdown-content {
+  display: block;
+}
+.mobile-dropdown a {
+  font-weight: normal;
+}
+
+/* Responsive Hide Desktop Nav, Show Hamburger */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* =====================
+   3. HOME PAGE LAYOUT
+   ===================== */
+.home-main {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Blurred Background Image */
+.background-image {
+  background: url("images/background.png") no-repeat center center/cover;
+  filter: blur(4px);
+  position: absolute;
+  top: 0;
+  left: 0; 
+  right: 0;
+  bottom: 0;
+  z-index: -1; /* behind content */
+}
+
+/* 3.1. SLIDER */
+.slider-container {
+  position: relative;
+  margin: 2rem auto;
+  width: 80%;
+  max-width: 800px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  z-index: 1; /* above blurred bg */
+}
+/* The visible slider item */
+.slider-item {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  text-align: center;
+}
+.slider-item img {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+.slider-item p {
+  font-size: 1.1rem;
+  color: #4F2E1F;
+}
+
+/* Slider Buttons (Left & Right) */
+/* Remove the circle shape and background from the slider buttons */
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* No background or border */
+  background: none;
+  border: none;
+  
+  /* You can choose a color that stands out against your background */
+  color: #4F2E1F;
+  
+  /* Adjust font size to taste */
+  font-size: 1.5rem;
+  
+  /* Minimal padding for a little clickable area */
+  padding: 0.25rem 0.5rem;
+  
+  cursor: pointer;
+  z-index: 2;
+  
+  /* Subtle transition on hover (color or something else) */
+  transition: color 0.3s ease;
+}
+/* Example hover effect: slightly darker or highlight color */
+.slider-button:hover {
+  color: #C47A5A;
+}
+.slider-button-left {
+  left: 1rem;
+  color: #FFF8F2;
+}
+.slider-button-right {
+  right: 1rem;
+  color: #FFF8F2;
+}
+
+/* 3.2. CTA SECTION (Below slider) */
+.cta-section {
+  background-color: #FFF8F2;
+  padding: 2rem 1rem;
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 800px;
+  border-radius: 8px;
+  z-index: 1;
+}
+.cta-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #4F2E1F;
+}
+.cta-section p {
+  color: #4F2E1F;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.cta-button {
+  background-color: #C47A5A;
+  color: #FFF;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.cta-button:hover {
+  background-color: #b96c4f;
+}
+/* Amazon color override */
+.amazon-btn {
+  background-color: #FF9900; 
+}
+.amazon-btn:hover {
+  background-color: #e68600;
+}
+
+/* 3.3. SNS SECTION */
+.sns-section {
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+.sns-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.sns-section p {
+  margin-bottom: 1rem;
+}
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.social-icon img {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+/* =====================
+   4. PRODUCTS PAGE
+   ===================== */
+.products-main {
+  padding: 1.5rem;
+}
+.product-section {
+  display: none; /* Shown via JS: showProduct() */
+  margin-bottom: 2rem;
+  background-color: #FFF8F2;
+  padding: 1rem;
+  border-radius: 5px;
+}
+.product-section h2 {
+  margin-bottom: 1rem;
+  color: #C47A5A;
+}
+.product-item {
+  margin-bottom: 1.5rem;
+}
+.product-item img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+.product-item ul {
+  list-style: disc inside;
+  margin-top: 0.5rem;
+}
+
+/* =====================
+   5. STORIES PAGE
+   ===================== */
+.stories-main {
+  padding: 1.5rem;
+}
+.story-item {
+  background-color: #FFF8F2;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  text-align: center; /* Center images/titles */
+}
+.story-item img {
+  display: block;
+  margin: 0 auto 0.5rem;
+  max-width: 300px; /* limit size so it blends in */
+  border-radius: 15px;
+}
+  /* optional fade at edges (radial mask):
+     -webkit-mask-image: radial-gradient(circle, #000 85%, transparent 100%);
+     mask-image: radial-gradient(circle, #000 85%, transparent 100%);
+}
+*/
+.story-item h2 {
+  margin-bottom: 0.5rem;
+}
+
+/* =====================
+   6. ABOUT US PAGE
+   ===================== */
+/*****************************************************
+  CLEAN HERO (NO BACKGROUND)
+*****************************************************/
+.about-hero-clean {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  background-color: #F3EDE7; /* optional subtle color behind the hero text */
+}
+
+.about-hero-clean h1 {
+  font-size: 2.2rem;
+  color: #4F2E1F;
+  margin-bottom: 1rem;
+}
+
+.about-hero-clean .tagline {
+  font-size: 1.2rem;
+  color: #4F2E1F;
+  font-style: italic;
+}
+
+/*****************************************************
+  BLURRED BACKGROUND FOR THE MAIN CONTENT ONLY
+*****************************************************/
+.about-main {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1rem;
+  /* 
+    We’ll make the container at least as tall as its content, 
+    and the background behind it will be from a pseudo-element.
+  */
+}
+
+/* 
+  The pseudo-element holds the actual background image, 
+  blurred & partially transparent. 
+  This ensures we do NOT blur the text inside .about-main.
+*/
+.about-main::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  
+  /* Stationary / fixed background image */
+  background: url("images/aboutus1.webp") no-repeat center top / cover;
+  background-attachment: fixed;
+  
+  /* Blur and fade */
+  filter: blur(5px);
+  opacity: 0.3;    /* adjust to make it more or less faded */
+  z-index: -1;     /* behind the main content */
+}
+
+/* 
+  The actual text content remains crisp because we place it 
+  above the pseudo-element. 
+*/
+.about-content, 
+.about-images {
+  position: relative; /* ensures they stack above the pseudo-element */
+  z-index: 2;
+  color: #4F2E1F;
+}
+
+/*****************************************************
+  ADDITIONAL STYLES
+*****************************************************/
+.about-content h2 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: #C47A5A;
+}
+
+.about-content p {
+  margin-bottom: 1rem;
+  color: #4F2E1F;
+}
+
+.about-images {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.about-images img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+/* Optionally adjust for responsiveness */
+@media (min-width: 768px) {
+  .about-hero-clean h1 {
+    font-size: 3rem;
+  }
+  .about-hero-clean .tagline {
+    font-size: 1.4rem;
+  }
+}
+
+/* =====================
+   7. CONTACT US PAGE
+   ===================== */
+.contact-main {
+  padding: 1.5rem;
+}
+.contact-info {
+  margin-bottom: 1rem;
+}
+.contact-map {
+  margin-bottom: 1rem;
+}
+.send-to-phone {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #C47A5A;
+  color: #FFF;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.contact-form {
+  background-color: #FFF8F2;
+  padding: 1rem;
+  border-radius: 5px;
+  max-width: 400px;
+}
+.contact-form label {
+  display: block;
+  margin-top: 0.5rem;
+}
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #CCC;
+}
+.contact-form button {
+  margin-top: 1rem;
+  background-color: #C47A5A;
+  color: #FFF;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.contact-form button:hover {
+  background-color: #b96c4f;
+}
+.contact-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* ensures wrapping on smaller screens if needed */
+  gap: 2rem;
+}
+/* Left column (info & form) */
+.contact-left {
+  flex: 1 1 300px; /* can shrink to 300px if needed on narrow screens */
+}
+
+/* Right column (map, extra info) */
+.contact-right {
+  flex: 1 1 300px;
+}
+
+/* Map section styling */
+.contact-map {
+  margin-bottom: 1rem;
+}
+.contact-map iframe {
+  width: 100%;
+  height: 350px; /* or any desired height */
+  border: 0;
+}
+.send-to-phone {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #C47A5A;
+  color: #FFF;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* Additional info box on right side */
+.extra-contact-info {
+  background-color: #FFF8F2;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.extra-contact-info h2 {
+  color: #C47A5A;
+  margin-bottom: 0.5rem;
+}
+.extra-contact-info p {
+  color: #4F2E1F;
+  line-height: 1.5;
+}
+
+/* Why Contact Us? left side */
+.why-contact {
+  margin-bottom: 1rem;
+}
+.why-contact h2 {
+  color: #C47A5A;
+  margin-bottom: 0.5rem;
+}
+.why-contact ul {
+  list-style: disc inside;
+  color: #4F2E1F;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  /* Stack columns vertically on smaller screens */
+  .contact-wrapper {
+    flex-direction: column;
+  }
+}
+/* =====================
+   8. FOOTER
+   ===================== */
+footer {
+  background-color: #F3EDE7;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+footer p {
+  color: #4F2E1F;
+}
+
+/* 
+  That's the complete consolidated stylesheet. 
+  Adjust any colors, fonts, or spacing as you see fit.
+*/

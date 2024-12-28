@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mosi Health - Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header>
+    <div class="logo-container">
+      <img src="images/mosi-logo.png" alt="Mosi Health Logo" class="logo" />
+    </div>
+    <nav class="navbar">
+      <ul class="nav-menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li class="dropdown">
+          <!-- "Products" has no link to prevent navigation, just shows dropdown -->
+          <a href="#" class="dropbtn" onclick="return false;">Products</a>
+          <ul class="dropdown-content">
+            <li><a href="products.html#hibiscus">Hibiscus Inulin Sweetener</a></li>
+            <li><a href="products.html#liquid">Liquid Inulin</a></li>
+          </ul>
+        </li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu (hidden by default) -->
+  <div class="mobile-menu">
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li class="mobile-dropdown">
+        <a href="#" onclick="return false;">Products</a>
+        <ul class="mobile-dropdown-content">
+          <li><a href="products.html#hibiscus">Hibiscus Inulin Sweetener</a></li>
+          <li><a href="products.html#liquid">Liquid Inulin</a></li>
+        </ul>
+      </li>
+      <li><a href="stories.html">Stories</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+   <main class="home-main">
+    <!-- Optional blurred background -->
+    <div class="background-image"></div>
+
+    <!-- Slider Container -->
+    <div class="slider-container">
+      <!-- Left Button -->
+      <button class="slider-button slider-button-left" onclick="prevSlide()">
+        &lt;
+      </button>
+
+      <!-- The slider item placeholder -->
+      <div id="slider-item" class="slider-item">
+        <!-- Fallback content if JS is disabled -->
+        <img src="images/product1.webp" alt="Hibiscus Inulin Sweetener" />
+        <p>Hibiscus Inulin Sweetener - fallback content</p>
+      </div>
+
+      <!-- Right Button -->
+      <button class="slider-button slider-button-right" onclick="nextSlide()">
+        &gt;
+      </button>
+    </div>
+
+    <!-- Your CTA section, placed BELOW the slider -->
+    <section class="cta-section">
+      <h2>Discover the Power of Inulin</h2>
+      <p>
+        Learn how inulin-based sweeteners can transform your recipes and 
+        support your healthier lifestyle!
+      </p>
+      <div class="cta-buttons">
+        <a href="https://www.amazon.com" class="cta-button amazon-btn" target="_blank">Buy on Amazon</a>
+        <a href="products.html" class="cta-button info-btn">Learn More</a>
+      </div>
+    </section>
+
+    <!-- Optional SNS Section below the CTA -->
+    <section class="sns-section">
+      <h3>Stay Connected</h3>
+      <p>Follow us for updates and exclusive deals!</p>
+      <div class="social-icons">
+        <!-- Placeholder links/icons -->
+    <a href="#" class="social-icon">
+      <img src="images/facebook-minimal.svg" alt="Facebook" />
+    </a>
+    <a href="#" class="social-icon">
+      <img src="images/instagram-minimal.svg" alt="Instagram" />
+    </a>
+    <a href="#" class="social-icon">
+      <img src="images/x-minimal.svg" alt="X" />
+    </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Mosi Health. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

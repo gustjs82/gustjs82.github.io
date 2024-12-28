@@ -1,0 +1,74 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #4f3500;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header .menu {
+    list-style-type: none;
+}
+
+header .menu li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header .menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    background-image: url('https://photos.app.goo.gl/dLTEozk7RVb5JgsSA');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero .main-logo {
+    max-width: 100%;
+    height: auto;
+}
+
+.popular-items {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.recent-articles {
+    background-color: #fff;
+    padding: 50px 0;
+}
+
+.recent-articles .articles {
+    display: flex;
+    justify-content: space-around;
+}
+
+.recent-articles .article {
+    width: 30%;
+}
+
+footer {
+    background-color: #4f3500;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}

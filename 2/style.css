@@ -207,6 +207,7 @@ header {
   position: relative;
   margin: 2rem auto;
   width: 80%;
+  min-height: 400px; 
   max-width: 800px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 2rem;
@@ -222,9 +223,20 @@ header {
   text-align: center;
 }
 .slider-item img {
-  max-width: 200px;
-  height: auto;
-  margin-bottom: 1rem;
+  /* Force a consistent dimension, e.g., 300×300 */
+  width: 300px;
+  height: 300px;
+  
+  /* Crop/scale the image to fill the box (if aspect ratios differ). 
+     "cover" zooms in to fill, "contain" shrinks to fit. */
+  object-fit: cover;
+
+  /* Center the image in its container if there's leftover space */
+  display: block;
+  margin: 0 auto;
+  max-width: 300px;
+  /* height: auto; */
+  /* margin-bottom: 1rem; */
 }
 .slider-item p {
   font-size: 1.1rem;

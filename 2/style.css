@@ -152,6 +152,9 @@ header {
 .mobile-dropdown a {
   font-weight: normal;
 }
+.mobile-dropdown:hover .mobile-dropdown-content {
+  display: block;
+}
 
 /* Responsive Hide Desktop Nav, Show Hamburger */
 @media (max-width: 768px) {

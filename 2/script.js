@@ -189,6 +189,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Initialize hamburger menu for mobile nav
   initHamburgerMenu();
+  // Then call the new sub-menu function
+  initMobileSubMenu();
 
   // If there's a product hash on products.html, show it
   const hash = window.location.hash.replace("#", "");
@@ -196,3 +198,32 @@ window.addEventListener("DOMContentLoaded", () => {
     showProduct(hash);
   }
 });
+/*******************************************************
+   Initialize Mobile Dropdown
+   So that tapping "Products" keeps the sub-menu visible
+*******************************************************/
+function initMobileSubMenu() {
+  // Query all the parent .mobile-dropdown elements
+  const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
+
+  mobileDropdowns.forEach((dropdown) => {
+    // Grab the anchor for the parent menu (e.g., "Products")
+    const link = dropdown.querySelector("a");
+    // Grab the actual sub-menu <ul>
+    const subMenu = dropdown.querySelector(".mobile-dropdown-content");
+
+    // If either is missing, skip
+    if (!link || !subMenu) return;
+
+    // Attach a click listener to the parent link
+    link.addEventListener("click", (e) => {
+      e.preventDefault(); // Prevent link from navigating
+      // Toggle the display of the sub-menu
+      if (subMenu.style.display === "block") {
+        subMenu.style.display = "none";
+      } else {
+        subMenu.style.display = "block";
+      }
+    });
+  });
+}

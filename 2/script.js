@@ -198,32 +198,51 @@ window.addEventListener("DOMContentLoaded", () => {
     showProduct(hash);
   }
 });
-/*******************************************************
-   Initialize Mobile Dropdown
-   So that tapping "Products" keeps the sub-menu visible
-*******************************************************/
+
+/*****************************************************
+  1) Detect if user is on a mobile browser
+*****************************************************/
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  ) 
+  || (window.innerWidth <= 768); 
+  /* 
+     You can combine user agent detection with 
+     a screen width check for better reliability 
+  */
+}
+
+/*****************************************************
+  2) Initialize Mobile Sub-Menu 
+  If mobile, ignore hover & toggle via touch/click
+*****************************************************/
 function initMobileSubMenu() {
-  // Query all the parent .mobile-dropdown elements
   const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
+  const isMobile = isMobileDevice();
 
   mobileDropdowns.forEach((dropdown) => {
-    // Grab the anchor for the parent menu (e.g., "Products")
     const link = dropdown.querySelector("a");
-    // Grab the actual sub-menu <ul>
     const subMenu = dropdown.querySelector(".mobile-dropdown-content");
-
-    // If either is missing, skip
     if (!link || !subMenu) return;
 
-    // Attach a click listener to the parent link
-    link.addEventListener("click", (e) => {
-      e.preventDefault(); // Prevent link from navigating
-      // Toggle the display of the sub-menu
-      if (subMenu.style.display === "block") {
-        subMenu.style.display = "none";
-      } else {
-        subMenu.style.display = "block";
-      }
-    });
+    // If we are on a mobile device, let's handle sub-menu by click
+    if (isMobile) {
+      // Remove any "hover" or "focus-within" rules by forcing style if needed
+      subMenu.style.display = "none";
+
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        // Toggle sub-menu
+        if (subMenu.style.display === "block") {
+          subMenu.style.display = "none";
+        } else {
+          subMenu.style.display = "block";
+        }
+      });
+    } else {
+      // Desktop – let the existing hover behavior in CSS handle the dropdown
+      // or do nothing special here
+    }
   });
 }

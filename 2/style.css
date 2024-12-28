@@ -164,6 +164,21 @@ header {
   .hamburger {
     display: flex;
   }
+/* Remove or negate the hover effect on mobile */
+  .dropdown:hover .dropdown-content {
+    display: none !important;
+  }
+  .mobile-menu ul li {
+    /* bigger top/bottom padding or margin */
+    padding: 1rem 0;
+    /* or margin: 1rem 0; whichever you prefer 
+       for bigger tap-friendly area */
+  }
+
+  /* The sub-menu items as well, if needed */
+  .mobile-dropdown-content li {
+    padding: 1rem 0;
+  }  
 }
 
 /* =====================

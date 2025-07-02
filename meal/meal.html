@@ -65,22 +65,28 @@
     "days": {
       "day1": {
         "breakfast": {
-          "title": "Hearty Blueberry Oatmeal Bowl",
+          "title": "Hearty Blueberry Oatmeal Bowl ~785 kcal | \~25 g P / 90 g C / 25 g F / 10 g fiber",
           "calories": 785,
-          "ingredients": ["¾ cup rolled oats","1 cup milk (2%)","1 Tbsp chia seeds","½ cup blueberries","1 Tbsp honey","1 banana, sliced","1 oz almonds"],
+          "ingredients": ["¾ cup rolled oats (60 g): 225 kcal","1 cup 2% milk (240 ml): 120 kcal","1 Tbsp chia seeds (15 g): 75 kcal","½ cup blueberries (74 g): 40 kcal","1 Tbsp honey (21 g): 60 kcal","1 medium banana (118 g): 105 kcal, sliced","1 oz almonds (28 g): 160 kcal"],
           "steps": ["Combine oats, milk, and chia seeds in pot.","Cook 8–10 minutes until creamy.","Stir in blueberries and honey.","Top with sliced banana and almonds."]
         },
         "lunch": {
-          "title": "Power Chicken & Quinoa Veggie Salad",
+          "title": "Power Chicken & Quinoa Veggie Salad ~535 kcal | \~35 g P / 50 g C / 18 g F / 8 g fiber",
           "calories": 535,
-          "ingredients": ["¾ cup cooked quinoa","5 oz chicken breast","1 tsp olive oil","1 cup mixed veggies & spinach","2 Tbsp vinaigrette"],
+          "ingredients": ["¾ cup cooked quinoa (135 g): 160 kcal","5 oz grilled chicken breast (140 g): 225 kcal","1 tsp olive oil (5 ml): 40 kcal","1 cup spinach + veggies (120 g): 40 kcal","2 Tbsp vinaigrette (30 g): 70 kcal"],
           "steps": ["Cook quinoa.","Sauté chicken in oil 7 min.","Toss quinoa, chicken, veggies, dressing."]
         },
         "dinner": {
-          "title": "Beef & Broccoli Stir-Fry",
+          "title": "Beef & Broccoli Stir-Fry ~630 kcal | \~30 g P / 70 g C / 20 g F / 7 g fiber",
           "calories": 630,
-          "ingredients": ["5 oz lean beef","1 tsp oil + sauces","1 cup broccoli & bell peppers","1 cup cooked brown rice"],
+          "ingredients": ["5 oz lean beef (140 g): 250 kcal","1 tsp oil + sauces: 90 kcal","1 cup broccoli + peppers (160 g): 70 kcal","1 cup cooked brown rice (200 g): 220 kcal"],
           "steps": ["Marinate beef 5 min.","Stir-fry beef 3 min, set aside.","Stir-fry veggies 5 min.","Combine beef and sauce, serve over rice."]
+        },
+        "Mini-Meal": {
+          "title": "Recovery Smoothie ~630 kcal | \~30 g P / 70 g C / 20 g F / 7 g fiber",
+          "calories": 400,
+          "ingredients": ["5 oz lean beef (140 g): 250 kcal", "1 tsp oil + sauces: 90 kcal","1 cup broccoli + peppers (160 g): 70 kcal","1 cup cooked brown rice (200 g): 220 kcal"],
+          "steps": ["Blend all with ice"]
         }
       },
       "day2": {
@@ -101,6 +107,12 @@
           "calories": 700,
           "ingredients": ["6 oz salmon","1 cup cooked rice","1 cup mixed veggies","1 Tbsp teriyaki sauce"],
           "steps": ["Pan-sear salmon 10 min.","Steam veggies 5 min.","Assemble bowl with rice, veggies, salmon."]
+        },
+        "Mini-Meal": {
+          "title": "PB & Banana Sandwich ~400 kcal",
+          "calories": 400,
+          "ingredients": ["2 slices whole-grain bread", "2 Tbsp peanut butter","½ banana sliced"],
+          "steps": ["assemble"]
         }
       },
       "day3": {
@@ -121,6 +133,12 @@
           "calories": 600,
           "ingredients": ["5 oz chicken","1 cup bell peppers & onions","1 cup rice","Salsa & Greek yogurt"],
           "steps": ["Sauté chicken & veggies 10 min.","Serve over rice with salsa & yogurt."]
+        },
+        "Mini-Meal": {
+          "title": "Smoothie (banana, yogurt, oats, nuts) ~450 kcal",
+          "calories": 450,
+          "ingredients": ["banana", "yogurt","oats, nuts"],
+          "steps": ["blend all ingridient"]
         }
       },
       "day4": {
@@ -141,6 +159,12 @@
           "calories": 700,
           "ingredients": ["1 can chickpeas","¼ can coconut milk","1 Tbsp curry powder","1 cup rice"],
           "steps": ["Sauté onion & garlic 3 min.","Add chickpeas, coconut milk, curry; simmer 10 min.","Serve over rice."]
+        },
+        "Mini-Meal": {
+          "title": "Turkey & Cheese Roll-Ups + Fruit~350 kcal",
+          "calories": 350,
+          "ingredients": ["Turkey", "Cheese","Fruit"],
+          "steps": ["blend all ingridient"]
         }
       }
     }
@@ -282,7 +306,7 @@
       const mealsDiv = document.getElementById(`${planKey}-meals`);
       Object.entries(plan.days).forEach(([dayKey, meals]) => {
         const dayLabel = `Day ${dayKey.replace('day', '')}`;
-        ['breakfast','lunch','dinner'].forEach(mealKey => {
+        ['breakfast','lunch','dinner','Mini-Meal'].forEach(mealKey => {
           const meal = meals[mealKey];
           const btn = document.createElement('button');
           btn.className = 'meal-btn';

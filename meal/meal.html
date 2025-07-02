@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Meal Plans</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    nav { margin-bottom: 20px; text-align: center; }
+    nav button { padding: 10px 20px; margin: 5px; font-size: 16px; cursor: pointer; }
+    section { display: none; }
+    section.active { display: block; }
+    h2 { margin-top: 20px; text-align: center; }
+    .hamburger { font-size: 24px; background: none; border: none; cursor: pointer; }
+    .meal-menu { display: flex; flex-direction: column; margin: 10px 0; }
+    .meal-menu.hidden { display: none; }
+    .meal-btn { padding: 15px; margin: 5px 0; font-size: 16px; text-align: left; border: 1px solid #ccc; border-radius: 5px; background: #f0f0f0; }
+    .meal-btn.active { background: #d0eaff; }
+    .meal { display: none; margin-top: 20px; }
+    .meal.active { display: block; }
+    .collapsible { background: #eee; padding: 10px; cursor: pointer; border: none; width: 100%; text-align: left; }
+    .content { display: none; padding: 10px 20px; background: #f9f9f9; }
+    ul, ol { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Weekly Meal Plans</h1>
+  <nav>
+    <button onclick="showSection('standard')">Standard Plan</button>
+    <button onclick="showSection('korean')">Korean-Friendly Plan</button>
+  </nav>
+
+  <section id="standard" class="active">
+    <h2>Standard Plan</h2>
+    <button class="hamburger" onclick="toggleMenu('standard-menu')">☰</button>
+    <button class="collapsible" onclick="toggleCollapse('standard-grocery')">Weekly Grocery List</button>
+    <div id="standard-grocery" class="content"></div>
+    <div id="standard-menu" class="meal-menu"></div>
+    <div id="standard-meals"></div>
+  </section>
+
+  <section id="korean">
+    <h2>Korean-Friendly Plan</h2>
+    <button class="hamburger" onclick="toggleMenu('korean-menu')">☰</button>
+    <button class="collapsible" onclick="toggleCollapse('korean-grocery')">Weekly Grocery List</button>
+    <div id="korean-grocery" class="content"></div>
+    <div id="korean-menu" class="meal-menu"></div>
+    <div id="korean-meals"></div>
+  </section>
+
+  <script>
+//    let data;
+//    fetch('meal_data.json')
+//      .then(res => res.json())
+      //.then(json => { data = json; buildPlan('standard'); buildPlan('korean'); })
+//      .catch(console.error);
+	let data = {
+  "standard": {
+    "groceryList": {
+      "produce": ["Bananas (14)", "Mixed berries (3 cups)", "Spinach (1 bag)", "Broccoli (2 heads)", "Bell peppers (3)", "Carrots (5)", "Celery stalks (2)", "Cherry tomatoes (1 pint)", "Cucumber (1)", "Avocado (2)", "Onion (3)", "Garlic (1 head)", "Parsley & cilantro"],
+      "meatFish": ["Chicken breast (6 × 4 oz)", "Lean beef (4 × 4 oz)", "Turkey deli slices (16 oz)", "Salmon fillets (4 × 4 oz)"],
+      "pantry": ["Rolled oats (1 lb)", "Chia seeds (small bag)", "Quinoa (1 lb)", "Brown rice (1 lb)", "Whole-wheat tortillas & pitas", "Canned lentils", "Canned diced tomatoes (2)", "Canned chickpeas (2)", "Peanut butter", "Granola", "Hummus", "Olive oil", "Spices & sauces"],
+      "dairy": ["Greek yogurt (32 oz)", "Feta cheese (4 oz)", "Milk or alternative (1 qt)", "Almonds or mixed nuts"]
+    },
+    "days": {
+      "day1": {
+        "breakfast": {
+          "title": "Hearty Blueberry Oatmeal Bowl",
+          "calories": 785,
+          "ingredients": ["¾ cup rolled oats","1 cup milk (2%)","1 Tbsp chia seeds","½ cup blueberries","1 Tbsp honey","1 banana, sliced","1 oz almonds"],
+          "steps": ["Combine oats, milk, and chia seeds in pot.","Cook 8–10 minutes until creamy.","Stir in blueberries and honey.","Top with sliced banana and almonds."]
+        },
+        "lunch": {
+          "title": "Power Chicken & Quinoa Veggie Salad",
+          "calories": 535,
+          "ingredients": ["¾ cup cooked quinoa","5 oz chicken breast","1 tsp olive oil","1 cup mixed veggies & spinach","2 Tbsp vinaigrette"],
+          "steps": ["Cook quinoa.","Sauté chicken in oil 7 min.","Toss quinoa, chicken, veggies, dressing."]
+        },
+        "dinner": {
+          "title": "Beef & Broccoli Stir-Fry",
+          "calories": 630,
+          "ingredients": ["5 oz lean beef","1 tsp oil + sauces","1 cup broccoli & bell peppers","1 cup cooked brown rice"],
+          "steps": ["Marinate beef 5 min.","Stir-fry beef 3 min, set aside.","Stir-fry veggies 5 min.","Combine beef and sauce, serve over rice."]
+        }
+      },
+      "day2": {
+        "breakfast": {
+          "title": "Spinach & Feta Egg Wrap + Nuts",
+          "calories": 640,
+          "ingredients": ["2 eggs","1 cup spinach","2 Tbsp feta cheese","1 whole-wheat tortilla","½ oz walnuts"],
+          "steps": ["Sauté spinach 2 min.","Scramble eggs 2–3 min.","Assemble wrap, serve nuts."]
+        },
+        "lunch": {
+          "title": "Turkey & Avocado Wrap + Veggie Sticks",
+          "calories": 550,
+          "ingredients": ["1 whole-wheat tortilla","5 oz turkey slices","½ avocado","2 Tbsp hummus","Carrot & celery sticks"],
+          "steps": ["Spread hummus on tortilla.","Layer turkey, avocado, roll.","Serve with veggie sticks."]
+        },
+        "dinner": {
+          "title": "Salmon Rice & Veggie Bowl",
+          "calories": 700,
+          "ingredients": ["6 oz salmon","1 cup cooked rice","1 cup mixed veggies","1 Tbsp teriyaki sauce"],
+          "steps": ["Pan-sear salmon 10 min.","Steam veggies 5 min.","Assemble bowl with rice, veggies, salmon."]
+        }
+      },
+      "day3": {
+        "breakfast": {
+          "title": "Greek Yogurt Parfait + Trail Mix",
+          "calories": 550,
+          "ingredients": ["1 cup Greek yogurt","½ cup granola","½ cup mixed berries","1 Tbsp chia seeds","¼ cup trail mix"],
+          "steps": ["Layer yogurt, granola, berries.","Sprinkle chia seeds.","Serve with trail mix."]
+        },
+        "lunch": {
+          "title": "Hearty Lentil Soup + Cheese Toast",
+          "calories": 600,
+          "ingredients": ["1½ cups lentil soup","1 slice whole-grain toast","1 oz cheese"],
+          "steps": ["Heat soup 20 min.","Toast bread, top cheese."]
+        },
+        "dinner": {
+          "title": "Chicken Fajita Bowl",
+          "calories": 600,
+          "ingredients": ["5 oz chicken","1 cup bell peppers & onions","1 cup rice","Salsa & Greek yogurt"],
+          "steps": ["Sauté chicken & veggies 10 min.","Serve over rice with salsa & yogurt."]
+        }
+      },
+      "day4": {
+        "breakfast": {
+          "title": "Peanut Butter Banana Smoothie + Oat Bar",
+          "calories": 550,
+          "ingredients": ["1 banana","1 cup milk","2 Tbsp peanut butter","¼ cup oats","1 oat bar"],
+          "steps": ["Blend smoothie ingredients.","Serve with oat bar."]
+        },
+        "lunch": {
+          "title": "Hummus & Veggie Pita + Cheese Stick",
+          "calories": 550,
+          "ingredients": ["1 pita","3 Tbsp hummus","Spinach","Carrots","Cucumber","Cheese stick"],
+          "steps": ["Fill pita with hummus & veggies.","Serve with cheese stick."]
+        },
+        "dinner": {
+          "title": "Chickpea Curry & Rice",
+          "calories": 700,
+          "ingredients": ["1 can chickpeas","¼ can coconut milk","1 Tbsp curry powder","1 cup rice"],
+          "steps": ["Sauté onion & garlic 3 min.","Add chickpeas, coconut milk, curry; simmer 10 min.","Serve over rice."]
+        }
+      }
+    }
+  },
+  "korean": {
+    "groceryList": {
+      "produce": ["Kimchi (1 jar)", "Sweet potatoes (4)", "Spinach, cabbage, carrots, cucumbers, zucchini", "Onions, garlic, green onion"],
+      "proteinsDairy": ["Eggs", "Chicken breast & thigh", "Salmon", "Mackerel", "Tofu", "Canned tuna", "Greek yogurt", "Whey protein"],
+      "grainsLegumes": ["Brown rice", "Rolled oats", "Lentils"],
+      "pantry": ["Doenjang", "Gochujang", "Soy sauce", "Sesame oil", "Sesame seeds", "Mayonnaise", "Peanut butter", "Mixed nuts", "Chia seeds", "Honey"],
+      "extras": ["Roasted seaweed packs", "Trail mix"]
+    },
+    "days": {
+      "day1": {
+        "breakfast": {
+          "title": "Kimchi Fried Rice + Sunny-Side Egg & Spinach ~492 kcal | \~18 g P / 60 g C / 18 g F / 8 g fiber",
+          "calories": 492,
+          "ingredients": ["1 cup cooked brown rice (200 g): 220","½ cup chopped kimchi (100 g): 25","1 tsp sesame oil: 40","1 oz tofu cubes (50 g): 45","1 large egg (fried): 90","1 cup spinach (30 g), quickly wilted: 7","1 Tbsp roasted seaweed flakes: 15","1 Tbsp toasted sesame seeds: 50"],
+          "steps": ["Stir-fry rice, kimchi, oil, tofu 5 min.","Wilt spinach 1 min.","Fry egg 3 min.","Top with seaweed & sesame."]
+        },
+        "lunch": {
+          "title": "Chicken Bulgogi Lettuce Wrap Bowl ~525 kcal | \~35 g P / 60 g C / 10 g F / 7 g fiber",
+          "calories": 525,
+          "ingredients": ["5 oz thin-sliced chicken breast marinated in bulgogi sauce: 225","1 tsp oil: 40","2 Tbsp bulgogi sauce","4 large lettuce leaves (wraps): 10","1 cup cooked brown rice: 220","½ cup shredded carrot & cucumber mix: 20","2 Tbsp kimchi (side): 10"],
+          "steps": ["Sauté chicken & sauce 7 min.","Warm rice.","Assemble wraps with veggies & kimchi."]
+        },
+        "dinner": {
+          "title": "Doenjang Jjigae + Rice ~450 kcal | \~18 g P / 65 g C / 10 g F / 9 g fiber",
+          "calories": 450,
+          "ingredients": ["1½ cups broth with 2 Tbsp doenjang: 80","3 oz tofu cubes: 75","½ cup zucchini + ½ cup mushrooms + ¼ onion: 50","1 tsp oil + garlic: 25","1 cup cooked brown rice: 220"],
+          "steps": ["Sauté veggies 3 min.","Add broth & doenjang; simmer 10 min.","Serve with rice."]
+        },
+        "Mini-Meal": {
+          "title": "Banana-Peanut Butter Smoothie ~535 kcal | \~30 g P / 50 g C / 20 g F / 6 g fiber",
+          "calories": 535,
+          "ingredients": ["1 banana: 105", "1 cup milk: 120","1 scoop whey (25 g): 120","2 Tbsp peanut butter: 190"],
+          "steps": ["blend all ingridient"]
+        }
+      },
+      "day2": {
+        "breakfast": {
+          "title": "Gyeran Mari + Rice & Nuts ~640 kcal | \~30 g P / 50 g C / 30 g F / 6 g fiber",
+          "calories": 640,
+          "ingredients": ["3 eggs, whisked with spinach & carrot strips: 210","Spinach & carrot strips","1 tsp oil: 40","½ cup cooked brown rice: 110","1 cup milk: 120","1 oz mixed nuts: 160"],
+          "steps": ["Cook spinach/carrot 2 min.","Roll eggs 4 min.","Serve with rice, milk, nuts."]
+        },
+        "lunch": {
+          "title": "Deconstructed Tuna Kimbap Bowl ~587 kcal | \~35 g P / 65 g C / 18 g F / 8 g fiber",
+          "calories": 587,
+          "ingredients": ["1 cup cooked brown rice: 220","1 can tuna in water (drained): 120","¼ avocado sliced: 80","½ cup blanched spinach: 7","½ cup shredded carrot: 25","1 large egg strip (rolled & sliced): 70","Seaweed flakes & sesame seeds: 65"],
+          "steps": ["place Warm rice in a bowl","Layer all components over the rice.","Top with seaweed & sesame."]
+        },
+        "dinner": {
+          "title": "Gochujang-Glazed Salmon Bowl ~700 kcal | \~40 g P / 65 g C / 25 g F / 7 g fiber",
+          "calories": 700,
+          "ingredients": ["6 oz salmon fillet, brushed with gochujang mix: 360","1 Tbsp gochujang","1 cup cooked brown rice: 220","1 cup steamed broccoli + carrots: 80","1 tsp oil: 40"],
+          "steps": ["Glaze salmon & sear 10 min.","Steam veggies 5 min.","Serve."]
+        },
+        "Mini-Meal": {
+          "title": "Onigiri-Style Rice Ball + Whey Shake ~320 kcal | \~20 g P / 35 g C / 5 g F / 3 g fiber",
+          "calories": 320,
+          "ingredients": ["½ cup rice (hand-pressed ball) with tuna & seaweed: 200", "1 scoop whey + water/milk: 120"],
+          "steps": ["mix rice and seaweed and make a ball"]
+        }
+      },
+      "day3": {
+        "breakfast": {
+          "title": "Goguma Juk (Sweet Potato & Oat Porridge) ~665 kcal | \~20 g P / 85 g C / 25 g F / 9 g fiber",
+          "calories": 665,
+          "ingredients": ["½ cup rolled oats: 150","½ cup mashed sweet potato: 100","1 cup milk: 120","1 Tbsp chia: 75","1 Tbsp honey: 60","1 oz almonds: 160"],
+          "steps": ["Cook oats, milk, potato 8 min.","Stir in chia & honey.","Top almonds."]
+        },
+        "lunch": {
+          "title": "Doenjang-Lentil Stew + Rice",
+          "calories": 310,
+          "ingredients": ["1 c Doenjang stew: 200","½ c rice: 110"],
+          "steps": ["Simmer stew 20 min.","Serve with rice."]
+        },
+        "dinner": {
+          "title": "Dak Galbi (Spicy Stir-Fried Chicken) Bowl ~630 kcal | \~30 g P / 70 g C / 18 g F / 8 g fiber",
+          "calories": 630,
+          "ingredients": ["5 oz chicken thigh in dak-galbi sauce: 280","1 cup cabbage + sweet potato chunks: 90","2 Tbsp dak-galbi sauce","1 cup rice: 220","1 tsp oil: 40"],
+          "steps": ["Cook chicken, veggies & sauce 10 min.","Serve over rice."]
+        },
+        "Mini-Meal": {
+          "title": "Banana-Peanut Butter Yogurt Smoothie ~450 kcal| \~20 g P / 55 g C / 18 g F / 6 g fiber",
+          "calories": 450,
+          "ingredients": ["1 banana: 105","½ cup Greek yogurt: 65", "2 Tbsp peanut butter: 190", "¼ cup oats: 90"],
+          "steps": ["mix rice and seaweed and make a ball"]
+        }
+      },
+      "day4": {
+        "breakfast": {
+          "title": "Tuna Mayo Rice Bowl  ~580 kcal",
+          "calories": 580,
+          "ingredients": ["1 cup rice: 220","1 can tuna: 200","1 Tbsp mayo","½ cup kimchi: 25","1 egg (boiled & sliced): 70","1 oz seaweed flakes+sesame: 65"],
+          "steps": ["Mix tuna & mayo.","Layer over rice with kimchi & egg."]
+        },
+        "lunch": {
+          "title": "Tofu Bibimbap Bowl ~560 kcal",
+          "calories": 560,
+          "ingredients": ["1 cup rice: 220","4 oz tofu stir-fried in gochujang sauce: 180","½ cup spinach + carrot + cucumber: 30","Gochujang","1 fried egg: 90","1 Tbsp sesame oil: 40"],
+          "steps": ["Cook tofu & sauce 5 min.","Assemble bowl."]
+        },
+        "dinner": {
+          "title": "Grilled Mackerel + Rice & Spinach Soup ~540 kcal",
+          "calories": 540,
+          "ingredients": ["5 oz mackerel: 300","1 cup rice: 220","1 cup quick spinach-seaweed soup: 20"],
+          "steps": ["Sear mackerel 5 min/side.","Serve with rice & soup."]
+        },
+        "Mini-Meal": {
+          "title": "Kim-Rice Ball + Whey Shake ~320 kcal",
+          "calories": 320,
+          "ingredients": ["1 cup rice: 220","1 oz seaweed flakes+sesame: 65","1 scoop whey + water/milk: 120"],
+          "steps": ["mix rice and seaweed and make a ball"]
+        }
+      }
+    }
+  }
+}
+;  
+	buildPlan('standard'); buildPlan('korean');
+    function buildPlan(planKey) {
+      const plan = data[planKey];
+      // Grocery list
+      const groceryDiv = document.getElementById(`${planKey}-grocery`);
+      for (let cat in plan.groceryList) {
+        const h3 = document.createElement('h3');
+        h3.textContent = capitalize(cat.replace(/([A-Z])/g, ' $1'));
+        groceryDiv.appendChild(h3);
+        const ul = document.createElement('ul');
+        plan.groceryList[cat].forEach(item => {
+          const li = document.createElement('li'); li.textContent = item; ul.appendChild(li);
+        });
+        groceryDiv.appendChild(ul);
+      }
+      // Meal menu & sections
+      const menuDiv = document.getElementById(`${planKey}-menu`);
+      const mealsDiv = document.getElementById(`${planKey}-meals`);
+      Object.entries(plan.days).forEach(([dayKey, meals]) => {
+        const dayLabel = `Day ${dayKey.replace('day', '')}`;
+        ['breakfast','lunch','dinner'].forEach(mealKey => {
+          const meal = meals[mealKey];
+          const btn = document.createElement('button');
+          btn.className = 'meal-btn';
+          btn.textContent = `${dayLabel} - ${capitalize(mealKey)}: ${meal.title}`;
+          btn.onclick = () => showMeal(planKey, `${dayKey}-${mealKey}`);
+          menuDiv.appendChild(btn);
+          const section = document.createElement('div');
+          section.id = `${planKey}-${dayKey}-${mealKey}`;
+          section.className = 'meal';
+          section.innerHTML = `
+            <h3>${dayLabel} - ${capitalize(mealKey)}: ${meal.title}</h3>
+            <p><strong>Calories:</strong> ${meal.calories} kcal</p>
+            <h4>Ingredients:</h4><ul>${meal.ingredients.map(i=>`<li>${i}</li>`).join('')}</ul>
+            <h4>Prep Steps:</h4><ol>${meal.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+          `;
+          mealsDiv.appendChild(section);
+        });
+      });
+      // Activate first meal
+      const firstBtn = menuDiv.querySelector('.meal-btn');
+      if (firstBtn) firstBtn.click();
+    }
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+    function showMeal(planKey, mealId) {
+      const menu = document.getElementById(`${planKey}-menu`);
+      if (!menu.classList.contains('hidden')) menu.classList.add('hidden');
+      menu.querySelectorAll('.meal-btn').forEach(b => b.classList.remove('active'));
+      // find button by onclick includes id
+      [...menu.children].forEach(b => {
+        if (b.textContent.includes(mealId.split('-').map((v,i)=> i>0?capitalize(v):`Day ${v.replace('day','')}`).join(' - '))) {
+          b.classList.add('active');
+        }
+      });
+      const mealsDiv = document.getElementById(`${planKey}-meals`);
+      mealsDiv.querySelectorAll('.meal').forEach(m => m.classList.remove('active'));
+      const mealEl = document.getElementById(`${planKey}-${mealId}`);
+      if (mealEl) mealEl.classList.add('active');
+    }
+    function toggleMenu(id) {
+      document.getElementById(id).classList.toggle('hidden');
+    }
+    function toggleCollapse(id) {
+      const c = document.getElementById(id);
+      c.style.display = c.style.display==='block'?'none':'block';
+    }
+    function capitalize(str) { return str.charAt(0).toUpperCase()+str.slice(1); }
+  </script>
+</body>
+</html>
